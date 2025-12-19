@@ -1,0 +1,78 @@
+"use client";
+import { Button } from "@/app/components/ui/button";
+import Link from "next/link";
+import Image from "next/image";
+import Container from "../ui/container";
+
+const HeroSection = () => {
+
+  return (
+    <section className="relative min-h-[90h] pt-[40px] sm:min-h-screen flex flex-col items-center overflow-hidden bg-gradient-to-br from-[#26D2C6]/10 via-white to-[#1C22AA]/10">
+      {/* Subtle texture background */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.03)_1px,transparent_0)] bg-[length:20px_20px]"></div>
+
+      {/* Soft gradient effects in corners */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#29CDCF]/8 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#1947C4]/8 rounded-full blur-3xl"></div>
+      </div>
+
+      <Container className="relative z-10" size="xl" padding="none">
+        <div className="px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
+          <div className="flex flex-col items-center justify-center pt-16  sm:pt-20  md:pt-24  lg:pt-24 xl:pt-24 2xl:pt-28 ">
+            {/* Centered Content */}
+            <div className="text-center max-w-6xl mx-auto mb-8 sm:mb-10 md:mb-12 lg:mb-14 xl:mb-12">
+              {/* Main Heading */}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-bold leading-tight tracking-tight text-gray-900 font-montserrat mb-4 sm:mb-5 md:mb-6 lg:mb-6 xl:mb-6">
+                Zapeera – Pakistan's Leading Cloud-Based Business Management Software
+
+              </h1>
+
+              <p className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-xl 2xl:text-2xl text-gray-600 max-w-5xl mx-auto leading-relaxed font-montserrat font-normal mb-6 sm:mb-7 md:mb-8 lg:mb-8 xl:mb-8">
+                Empower your store or chain with our all-in-one platform. Zapeera’s cloud-based POS and inventory management software is built for Pakistani businesses, easy to use, fully scalable, and designed to save you time and money. Whether you run a retail shop, pharmacy, restaurant, or wholesale operation, Zapeera streamlines sales, stock control, and reporting in one intuitive solution.
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+                <Button
+                  size="default"
+                  className="bg-gradient-to-r from-[#29CDCF] to-[#1947C4] hover:opacity-90 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-sm md:text-sm lg:text-sm xl:text-sm 2xl:text-base px-4 sm:px-5 md:px-5 lg:px-5 xl:px-5 2xl:px-6 py-2.5 sm:py-2.5 md:py-2.5 lg:py-2.5 xl:py-2.5 2xl:py-3 rounded-full font-semibold"
+                  asChild
+                >
+                  <Link href="/contact-us">
+                    Start Free Trial
+                  </Link>
+                </Button>
+                <Button
+                  size="default"
+                  variant="outline"
+                  className="bg-white border-2 border-gray-300 hover:border-[#1947C4] hover:text-white hover:bg-gradient-to-r hover:from-[#29CDCF] hover:to-[#1947C4] text-gray-700 text-sm sm:text-sm md:text-sm lg:text-sm xl:text-sm 2xl:text-base px-4 sm:px-5 md:px-5 lg:px-5 xl:px-5 2xl:px-6 py-2.5 sm:py-2.5 md:py-2.5 lg:py-2.5 xl:py-2.5 2xl:py-3 rounded-full font-semibold shadow-sm hover:shadow-lg transition-all duration-300"
+                  asChild
+                >
+                  <Link href="/about-us">
+                    How It Works
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Dashboard Image */}
+            <div className="w-full max-w-4xl xl:max-w-5xl mx-auto mt-4 sm:mt-6 md:mt-8 lg:mt-8 xl:mt-8">
+              <div className="relative w-full aspect-video  bg-transparent overflow-hidden ">
+                <Image
+                  src="/images/hero.jpeg"
+                  alt="Dashboard Preview"
+                  fill
+                  className="object-cover rounded-tr-[20px] rounded-tl-[20px]"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+};
+
+export default HeroSection;

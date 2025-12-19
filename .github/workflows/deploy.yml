@@ -1,0 +1,46 @@
+name: 🚀 Deploy Frontend to VPS
+
+on:
+  push:
+    branches:
+      - main  # deploy when code is pushed to main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script_stop: true
+          script: |
+            echo "🚀 Starting deployment..."
+
+            cd ~/apps/pharmachy-landing-page || exit 1
+
+            echo "📦 Fetching and resetting to latest main branch..."
+            git fetch origin main
+            git reset --hard origin/main
+
+            echo "📦 Installing production dependencies..."
+            npm ci
+
+            echo "🔨 Building production bundle..."
+            npm run build
+
+            echo "♻️ Restarting PM2 process..."
+            pm2 delete frontend || true
+            pm2 start npm --name "frontend" -- start
+
+            echo "💾 Saving PM2 process list..."
+            pm2 save
+
+            echo "✅ Deployment completed successfully!"
